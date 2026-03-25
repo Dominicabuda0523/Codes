@@ -1,0 +1,34 @@
+player = {f'balance':100,"inventory":{}}
+
+print(player)
+
+item1 = {f"Apple":5}
+item2 = {f"Banana":3}
+item3 = {f"Orange":6}
+prices = {"Apple":5, "Banana":3, "Orange":6}
+print(f"We have, {item1}, {item2}, {item3}")
+
+def buy():
+    item_name = input(f"\nWhat would you like to buy?: ")
+    if item_name not in prices:
+        print("Item not found in shop")
+        return
+    try:
+        quantity = int(input(f"How many {item_name}(s) do you want to buy"))
+    except ValueError:
+        print("Please enter a valid number")
+        return
+
+    price = prices[item_name]
+    total_cost = price * quantity
+    if total_cost <= player["balance"]:
+        player["balance"] -= total_cost
+        print(f"You bought {quantity} {item_name}(s).")
+        print(f"Balance: {player['balance']}")
+        player["inventory"][item_name] = player["inventory"].get(item_name, 0) + quantity
+        print(f"you put {quantity} {item_name}(s) in your inventory")
+
+    else:
+        print(f"Insufficient funds")
+
+buy()
