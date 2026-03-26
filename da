@@ -1,0 +1,18 @@
+attempts = 0
+max_tries = 3
+
+while attempts < max_tries:
+    # Code for the attempt goes here (e.g., get user input)
+    guess = input("Enter your guess: ")
+    
+    # Check the guess and provide feedback
+    if guess == "secret":
+        print(f"Correct! You succeeded in {attempts + 1} attempts.")
+        break # Exit the loop if successful
+    else:
+        print("Incorrect, try again.")
+        
+    attempts += 1 # Increment the counter after each valid attempt
+
+if attempts == max_tries and guess != "secret":
+    print("You have run out of attempts. Access denied.")
