@@ -1,4 +1,0 @@
-# Main
-letters = str(input("Please input the letters for testing: "))
-for items in letters:
-    print(ord(items))

@@ -1,0 +1,26 @@
+def get_weight():
+    while True:
+        try:
+            Weight = int(input("Please input your weight: "))
+            break
+        except ValueError:
+            print("Invalid input. Please enter a numeric value for your weight.")
+    
+    Unit = str(input("Please select a unit. Type (K) Kg, or (L) Lbs: "))
+
+    if Unit.upper() == "K":
+        print("Weight in Lbs is", Weight * 2.205)
+    elif Unit.upper() == "L":
+        print("Weight in Kg is", Weight / 2.205)
+    else:
+        print("Please make sure your inputs are right.")
+
+get_weight()
+
+while True:
+     retry = input("Do you want to convert again? (Y/N): ")
+     if retry.upper() == 'Y':
+        get_weight()
+     else: 
+        print("Thank you for using!")
+        break
