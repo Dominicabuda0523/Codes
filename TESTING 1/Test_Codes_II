@@ -1,0 +1,11 @@
+a_str = input("Enter Number 1: ")
+b_str = input("Enter Number 2: ")
+
+try:
+    a = int(a_str)
+    b = int(b_str)
+except ValueError:
+    print("INVALID INPUT")
+else:
+    sum_result = a + b
+    print("The sum of", a, "and", b, "is", sum_result)
