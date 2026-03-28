@@ -1,0 +1,48 @@
+
+# Interface
+def interface():
+  print('\n===================')
+  print('Area Calculator 📐')
+  print('===================\n')
+  print('1) Triangle')
+  print('2) Rectangle')
+  print('3) Square')
+  print('4) Circle')
+  print('5) Quit')
+
+
+def shape_select():
+  while True:
+    try:
+      user_input = int(input('\nPlease select which shape: \n'))
+      return user_input
+    except ValueError:
+      print('Invalid Input. Please try again.')
+
+# Calculate for area of Triangle
+if user_input == 1:
+  base = float(input('Base: '))
+  height = float(input('Height: '))
+  area_tr = (base * height) / 2
+  print('Area of Triangle: ', area_tr)
+
+# Calculate for area of Rectangle
+elif user_input == 2:
+  length = float(input('Lenght: '))
+  width = float(input('Width: '))
+  area_re = length * width
+  print('Area of Rectangle: ', area_re)
+
+# Caculate for area of Square
+elif user_input == 3:
+  side = float(input('Side: '))
+  area_sq = side ** 2
+  print('Area of Square: ', area_sq)
+
+elif user_input == 4:
+  radius = float(input('Radius: '))
+  area_ci = 3.14 * (radius ** 2)
+  print('Area of Square: ', area_ci)
+
+elif user_input == 5:
+  print('\nThank you for using!\nSee you next time!')
