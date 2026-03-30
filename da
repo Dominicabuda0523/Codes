@@ -1,0 +1,69 @@
+accounts = [
+    {"username": "Dominic Abuda", "password": "2444"},
+    {"username": "John Doe", "password": "1234"},
+    {"username": "Jane Smith", "password": "5678"}
+]
+
+def interface():
+    print("\n===================")
+    print("One Account Login 🔐")
+    print("===================\n")
+    print("1) Login")
+    print("2) Register")
+    print("3) Quit\n")
+
+max_attempts = 3
+user_attempts = 0
+total_attempts = 0
+
+# This part is where the user will input their login credentials and the program will validate them. The user has 3 attempts to input the correct credentials before the program locks them out.
+def login():
+    print("\nPlease enter your login credentials:\n")
+
+    user_attempts = 0
+
+    while user_attempts < max_attempts:
+        username = str(input("Username: "))
+        password = str(input("Password: "))
+        for account in accounts:
+            if account["username"] == username and account["password"] == password:
+                print(f"Welcome back, {username}!")
+                return
+    else:
+        print("\nIncorrect username or password.")
+        user_attempts = user_attempts + 1
+        return user_attempts
+    
+total_attempts = login()
+
+if total_attempts == max_attempts:
+    print("\nToo many attempts. Please try again later.")
+
+
+# This part is where the user will select whether they want to login, register, or quit the program. The program will validate the input to make sure it is an integer and that it is between 1 and 3.
+def user_selection():
+    while True:
+        try:
+            user_input = int(input("Please select an option: "))
+            if user_input == 1:
+                login()
+                return user_input
+            elif user_input == 2:
+                register()
+                return user_input
+            elif user_input == 3:
+                print("Goodbye!")
+                exit()
+            else:
+                print("Invalid input. Please select 1, 2, or 3.")
+                user_selection()
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+
+def register():
+    print("\nRegistration is currently unavailable. Please try again later.\n")
+
+
+interface()
+user_selection()

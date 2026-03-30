@@ -1,11 +1,16 @@
 # Write code below 💖
 
-user = int(input('Give a number: '))
+import random
 
-total = 0
+my_numbers = []
+winning_numbers = []
 
 for i in range(5):
-  square = i ** 2
-  total += square
+  my_numbers.append(random.randint(1, 69))
+  winning_numbers.append(random.randint(1, 69))
 
-  print(total)
+my_numbers.append(random.randint(1, 26))
+winning_numbers.append(random.randint(1, 26))
+
+print(f'My Numbers: {my_numbers}')
+print(f'Winning Numbers: {winning_numbers}')

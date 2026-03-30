@@ -1,18 +1,66 @@
+accounts = {
+    "Dominic Abuda": "2444",
+    "John Doe": "1234",
+    "Jane Smith": "5678"
+}
+
+def interface():
+    print("\n===================")
+    print("One Account Login 🔐")
+    print("===================\n")
+    print("1) Login")
+    print("2) Register")
+    print("3) Quit\n")
+
+interface()
+
 max_attempts = 3
 user_attempts = 0
-c_un = "Dominic Abuda"
-c_pw = "2444"
 
-while user_attempts < max_attempts:
-    Username = str(input("Username: "))
-    Password = str(input("Password: "))
-    if Username == c_un and Password == c_pw:
-        print(f"Welcome back, {c_un}")
-        break
-    else:
-        print("\nIncorrect username or password.")
+def login():
+    print("\nPlease enter your login credentials:\n")
 
-    user_attempts += 1
+    while user_attempts < max_attempts:
+        username = str(input("Username: "))
+        password = str(input("Password: "))
+        if username in accounts and accounts[username] == password:
+            print(f"Welcome back, {username}!")
+            break
+        else:
+            print("\nIncorrect username or password.")
+            user_attempts = user_attempts + 1
+            return user_attempts
 
+user_attempts = login(user_attempts)
 if user_attempts == max_attempts:
     print("\nToo many attempts. Please try again later.")
+
+def register():
+    print("\nRegistration is currently unavailable. Please try again later.\n")
+
+def user_selection():
+    while True:
+        try:
+            user_input = int(input("Please select an option: "))
+            if user_input == 1:
+                login()
+                return user_input
+            
+            elif user_input == 2:
+                register()
+                return user_input
+            
+            elif user_input == 3:
+                print("Goodbye!")
+                exit()
+
+            else:
+                print("Invalid input. Please select 1, 2, or 3.")
+                user_selection()
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+user_selection()
+
+
+
