@@ -1,8 +1,8 @@
-accounts = {
-    "Dominic Abuda": "2444",
-    "John Doe": "1234",
-    "Jane Smith": "5678"
-}
+accounts = [
+    {'username': "Dominic Abuda", "password": "2444"},
+    {'username': "John Doe", "password": "1234"},
+    {'username': "Jane Smith", "password": "5678"}
+]
 
 def interface():
     print("\n===================")
@@ -14,53 +14,50 @@ def interface():
 
 interface()
 
-max_attempts = 3
-user_attempts = 0
+# Placeholder for Registration function
+
+def registration():
+    print("Registration feature coming soon!")
 
 def login():
-    print("\nPlease enter your login credentials:\n")
+
+    max_attempts = 3
+    user_attempts = 0
 
     while user_attempts < max_attempts:
-        username = str(input("Username: "))
-        password = str(input("Password: "))
-        if username in accounts and accounts[username] == password:
-            print(f"Welcome back, {username}!")
-            break
+        Username = str(input("Username: "))
+        Password = str(input("Password: "))
+        for account in accounts:
+            if Username == account["username"] and Password == account["password"]:
+                print(f"Welcome back, {Username}!")
+                return
         else:
             print("\nIncorrect username or password.")
-            user_attempts = user_attempts + 1
-            return user_attempts
+            
+        user_attempts += 1
 
-user_attempts = login(user_attempts)
-if user_attempts == max_attempts:
-    print("\nToo many attempts. Please try again later.")
+    if user_attempts == max_attempts:
+        print("\nToo many attempts. Please try again later.")
+        interface()
+        option_select()
 
-def register():
-    print("\nRegistration is currently unavailable. Please try again later.\n")
-
-def user_selection():
+def option_select():
     while True:
         try:
             user_input = int(input("Please select an option: "))
-            if user_input == 1:
-                login()
-                return user_input
-            
-            elif user_input == 2:
-                register()
-                return user_input
-            
-            elif user_input == 3:
-                print("Goodbye!")
-                exit()
-
-            else:
-                print("Invalid input. Please select 1, 2, or 3.")
-                user_selection()
         except ValueError:
-            print("Invalid input. Please enter a number.")
+            print("\nInvalid input. Please enter a number corresponding to the options.")
+        
+        if user_input == 1:
+            login()
+            break
+        elif user_input == 2:
+            registration()
+            break
+        elif user_input == 3:
+            print("Thank you for using! See you next time!")
+            quit()
+        else:
+            print("Please select a valid option.")
 
-user_selection()
-
-
-
+option_select()

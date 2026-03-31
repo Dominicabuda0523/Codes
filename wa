@@ -1,0 +1,18 @@
+max_attempts = 3
+user_attempts = 0
+c_un = "Dominic Abuda"
+c_pw = "2444"
+
+while user_attempts < max_attempts:
+    Username = str(input("Username: "))
+    Password = str(input("Password: "))
+    if Username == c_un and Password == c_pw:
+        print(f"Welcome back, {c_un}")
+        break
+    else:
+        print("\nIncorrect username or password.")
+
+    user_attempts += 1
+
+if user_attempts == max_attempts:
+    print("\nToo many attempts. Please try again later.")
