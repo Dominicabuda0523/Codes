@@ -1,18 +1,63 @@
-max_attempts = 3
-user_attempts = 0
-c_un = "Dominic Abuda"
-c_pw = "2444"
+accounts = [
+    {'username': "Dominic Abuda", "password": "2444"},
+    {'username': "John Doe", "password": "1234"},
+    {'username': "Jane Smith", "password": "5678"}
+]
 
-while user_attempts < max_attempts:
-    Username = str(input("Username: "))
-    Password = str(input("Password: "))
-    if Username == c_un and Password == c_pw:
-        print(f"Welcome back, {c_un}")
-        break
-    else:
-        print("\nIncorrect username or password.")
+def interface():
+    print("\n===================")
+    print("One Account Login 🔐")
+    print("===================\n")
+    print("1) Login")
+    print("2) Register")
+    print("3) Quit\n")
 
-    user_attempts += 1
+interface()
 
-if user_attempts == max_attempts:
-    print("\nToo many attempts. Please try again later.")
+# Placeholder for Registration function
+
+def registration():
+    print("Registration feature coming soon!")
+
+def login():
+
+    max_attempts = 3
+    user_attempts = 0
+
+    while user_attempts < max_attempts:
+        Username = str(input("Username: "))
+        Password = str(input("Password: "))
+        for account in accounts:
+            if Username == account["username"] and Password == account["password"]:
+                print(f"Welcome back, {Username}!")
+                return
+        else:
+            print("\nIncorrect username or password.")
+            
+        user_attempts += 1
+
+    if user_attempts == max_attempts:
+        print("\nToo many attempts. Please try again later.")
+        interface()
+        option_select()
+
+def option_select():
+    while True:
+        try:
+            user_input = int(input("Please select an option: "))
+        except ValueError:
+            print("\nInvalid input. Please enter a number corresponding to the options.")
+        
+        if user_input == 1:
+            login()
+            break
+        elif user_input == 2:
+            registration()
+            break
+        elif user_input == 3:
+            print("Thank you for using! See you next time!")
+            quit()
+        else:
+            print("Please select a valid option.")
+
+option_select()

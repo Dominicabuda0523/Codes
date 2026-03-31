@@ -1,0 +1,15 @@
+while True:
+    try:
+        user_input = int(input("Please select an option: "))
+    except ValueError:
+        print("Invalid input. Please enter a number corresponding to the options.")
+        
+    if user_input == 1:
+        login()
+    elif user_input == 2:
+        registration()
+    elif user_input == 3:
+        print("Thank you for using! See you next time!")
+        quit()
+    else:
+        print("Please select a valid option.")
