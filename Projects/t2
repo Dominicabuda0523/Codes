@@ -1,3 +1,0 @@
-import wikipedia
-
-print(wikipedia.summary("Honkai: Star Rail", sentences=2))
