@@ -1,0 +1,6 @@
+data = [
+  ['Item', 'Quantity'],
+  ['Blender', 2],
+  ['Posters', 30],
+  ['Shoes', 2]
+]
