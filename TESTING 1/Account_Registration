@@ -1,15 +1,16 @@
-while True:
-    try:
-        user_input = int(input("Please select an option: "))
-    except ValueError:
-        print("Invalid input. Please enter a number corresponding to the options.")
-        
-    if user_input == 1:
-        login()
-    elif user_input == 2:
-        registration()
-    elif user_input == 3:
-        print("Thank you for using! See you next time!")
-        quit()
-    else:
-        print("Please select a valid option.")
+import csv
+
+def Registration(Reg_username, Reg_password):
+    account_data = (Reg_username, Reg_password)
+
+    with open('Accounts_data.csv', 'a', newline='') as f:
+        csv_write = csv.writer(f)
+        csv_write.writerow(account_data)
+
+def Register():
+    username = input('Username: ')
+    password = input('Password: ')
+    return username, password
+
+data = Register()
+Registration(data[0], data[1])
