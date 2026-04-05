@@ -1,9 +1,3 @@
-accounts = [
-    {'username': "Dominic Abuda", "password": "2444"},
-    {'username': "John Doe", "password": "1234"},
-    {'username': "Jane Smith", "password": "5678"}
-]
-
 def interface():
     print("\n===================")
     print("One Account Login 🔐")
@@ -12,52 +6,81 @@ def interface():
     print("2) Register")
     print("3) Quit\n")
 
-interface()
+import csv
+from colorama import Fore, Style, init
+init(autoreset=True)
 
-# Placeholder for Registration function
+# Registration function NEW
 
-def registration():
-    print("Registration feature coming soon!")
+def Registration(Reg_username, Reg_password):
+    account_data = (Reg_username, Reg_password)
 
-def login():
-
-    max_attempts = 3
-    user_attempts = 0
-
-    while user_attempts < max_attempts:
-        Username = str(input("Username: "))
-        Password = str(input("Password: "))
-        for account in accounts:
-            if Username == account["username"] and Password == account["password"]:
-                print(f"Welcome back, {Username}!")
-                return
-        else:
-            print("\nIncorrect username or password.")
-            
-        user_attempts += 1
-
-    if user_attempts == max_attempts:
-        print("\nToo many attempts. Please try again later.")
+    with open('Accounts_data.csv', 'a', newline='') as f:
+        csv_write = csv.writer(f)
+        csv_write.writerow(account_data)
+        print(Fore.GREEN + '\nRegistration successful.\nPlease proceed to login.')
         interface()
         option_select()
+
+def Register():
+    username = input('Username: ')
+    password = input('Password: ')
+    return Registration(username, password)
+
+# Login function NEW
+
+attempts = 0
+max_attempts = 3
+
+def Login(username, password):
+    try:
+        with open('Accounts_data.csv', 'r', encoding='utf8') as file:
+            csv_reader = csv.reader(file)
+            next(csv_reader) # Skip the header row
+            
+            for row in csv_reader:
+                un = str(row[0])
+                pw = str(row[1])
+                if username == un and password == pw:
+                    print(Fore.GREEN + '\nLogin successful.')
+                    return True
+            else:
+                print(Fore.RED + '\nLogin failed. Incorrect username or password.')
+                global attempts
+                attempts += 1
+                if attempts >= max_attempts:
+                    print(Fore.RED + '\nWarning: Too many failed attempts. Please try again later.')
+                    quit()
+                return user_login()
+
+    except FileNotFoundError:
+        print(Fore.RED + '\nFile not found. Perhaps create a new one?')
+
+def user_login():
+    username = input('\nUsername: ')
+    password = input('Password: ')
+    return Login(username, password)
+
+# Option selection
 
 def option_select():
     while True:
         try:
-            user_input = int(input("Please select an option: "))
+            user_input = int(input("Please select an option: \n"))
         except ValueError:
-            print("\nInvalid input. Please enter a number corresponding to the options.")
+            print(Fore.RED + "\nInvalid input. Please enter a number corresponding to the options.")
         
         if user_input == 1:
-            login()
+            user_login()
             break
         elif user_input == 2:
-            registration()
+            Register()
             break
         elif user_input == 3:
-            print("Thank you for using! See you next time!")
+            print(Fore.GREEN + "Thank you for using! See you next time!")
             quit()
         else:
-            print("Please select a valid option.")
+            print(Fore.RED + "Please select a valid option.")
 
+interface()
 option_select()
